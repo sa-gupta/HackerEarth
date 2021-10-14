@@ -1,0 +1,43 @@
+package test;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class CharacterAtK {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int N = scan.nextInt();
+		String[] str = new String[N];
+		for(int i=0;i<N;i++) {
+			str[i] = scan.next();
+		}
+		int Q = scan.nextInt();
+		int[][] query = new int[Q][3];
+		for(int i=0;i<Q;i++) {
+			for(int j=0;j<3;j++) {
+				query[i][j] = scan.nextInt();
+			}
+		}
+		System.out.println(Arrays.toString(char_at_k(N, str, Q, query)));
+	}
+	
+	static char[] char_at_k(int N, String[] str, int Q, int[][] query) {
+		char[] list = new char[Q];
+		for(int i=0;i<Q;i++) {
+			int l = query[i][0]-1;
+			int r = query[i][1]-1;
+			int k = query[i][2]-1;
+			
+			String string = null;
+			
+			for(int j=l;j<=r;j++) {
+				string+=str[j];
+			}
+			char[] ch = string.toCharArray();
+			Arrays.sort(ch);
+			System.out.println(Arrays.toString(ch));
+			list[i] = ch[k];
+		}
+		return list;
+	}
+}
